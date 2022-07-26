@@ -1,11 +1,17 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 function Error() {
+  const navigate = useNavigate()
   return (
-   <>
-   
-   error page
-   </>
+    <>
+      <div className='error'>
+        <div className='txt'>
+          OOPS,PAGE NOT FOUND
+        </div>
+        <button onClick={navigate('/')} className='red'>BACK TO HOME</button>
+
+      </div>
+    </>
   )
 }
 

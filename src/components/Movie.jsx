@@ -1,41 +1,59 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { BsYoutube } from "react-icons/bs";
-import { MdSettingsInputSvideo } from 'react-icons/md'
+
 function Movie(props) {
-    const [data,setdata]=useState(null)
-    const [video,setvideo]=useState(null)
-    const {id,tag}=useParams()
-    useEffect(()=>{
-getdata()
-getvideo()
-    },[])
-    const getdata=async ()=>{
-        const res=await axios.get(`https://api.themoviedb.org/3/${tag}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-       console.log(res)
-        if(res.status===200){setdata(res.data)}
+    const [data, setdata] = useState(null)
+    const [video, setvideo] = useState(null)
+    const [similar, setsimilar] = useState(null)
+    const { id, tag } = useParams()
+    const navigate = useNavigate()
+    useEffect(() => {
+        getdata()
+        getvideo()
+        getsimilar()
+    }, [id])
+    const getdata = async () => {
+        const res = await axios.get(`https://api.themoviedb.org/3/${tag}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+        if (res.status === 200) { setdata(() => { return (res.data) }) }
     }
-    const getvideo=async ()=>{
-        
-        const vid=await axios.get(`https://api.themoviedb.org/3/${tag}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
-        if(vid.status===200){setvideo(vid.data.results[0].key)}
+    const getsimilar = async () => {
+        const res = await axios.get(`https://api.themoviedb.org/3/${tag}/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+        console.log(res.data)
+        if (res.status === 200) { setsimilar(() => { return (res.data.results) }) }
     }
-  return (
-  <>
-  {data?    
-  <div className='mov'>
-    <img src={`https://image.tmdb.org/t/p/w300/${data.backdrop_path}`} alt='movie image' className='mov-i' />
-    <div className='desc'>
-        <div className='head'>{data.original_title}</div>
-        <div className='tag'>{data.tagline}</div>
-        <div className='de'>{data.overview}</div>
-        <Link  to={`https://www.youtube.com/watch?v=${video}`}   target="_blank"    className='watch-trailer'    ><BsYoutube className='y-s' />WATCH TRAILER </Link>
-    </div>
-  </div>:'loading...'}
-  </>
-  )
+    const getvideo = async () => {
+
+        const vid = await axios.get(`https://api.themoviedb.org/3/${tag}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
+        if (vid.status === 200) { setvideo(() => { return (vid.data.results[0].key) }) }
+    }
+
+    return (
+        <>
+            {data && video && similar ?
+                <div className='mov' style={{ 'height': 'auto', padding: '0px', display: 'flex', 'backgroundImage': `url(https://image.tmdb.org/t/p/w500/${data.backdrop_path})` }}>
+                    <img src={`https://image.tmdb.org/t/p/w300/${data.poster_path}`} alt='movie pic' className='mov-i' />
+                    <div className='desc'>
+                        <div className='head'>{data.original_title}</div>
+                        <div className='tag'>{data.tagline}</div>
+                        <div className='de'>{data.overview}</div>
+                        <a href={`https://www.youtube.com/watch?v=${video}`} target="_blank" className='watch-trailer'    ><BsYoutube className='y-s' />WATCH TRAILER </a>
+                    </div>
+                    <div className='similar-h'>SIMILAR MOVIES</div>
+                    <div className='similar-movies'>
+                        {
+                            similar.map((elem, i) => {
+                                return (
+                                    <img onClick={() => { navigate(`/detail/movie/${elem.id}`) }} src={`https://image.tmdb.org/t/p/w300/${elem.poster_path}`} alt='similar movies' className='s-i' />
+                                )
+                            })
+                        }
+                    </div>
+                </div> : <div className='mov'>loading...</div>}
+        </>
+    )
 }
 
 export default Movie
