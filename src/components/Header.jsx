@@ -9,7 +9,7 @@ function Header() {
       <div className='heading'>
         <div className='ent'>ENTERTAINMENT HUB</div>
       </div>
-      <div className='hrz'></div>
+      
     </>
   )
 }

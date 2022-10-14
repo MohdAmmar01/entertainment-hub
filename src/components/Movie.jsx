@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { BsYoutube } from "react-icons/bs";
+import lod from '../images/loader.gif'
 
 function Movie(props) {
     const [data, setdata] = useState(null)
@@ -33,7 +34,7 @@ function Movie(props) {
     return (
         <>
             {data && video && similar ?
-                <div className='mov' style={{ 'height': 'auto', padding: '0px', display: 'flex', 'backgroundImage': `url(https://image.tmdb.org/t/p/w500/${data.backdrop_path})` }}>
+                <div className='mov' style={{ 'height': 'auto', padding: '0px', display: 'flex'}}>
                     <img src={`https://image.tmdb.org/t/p/w300/${data.poster_path}`} alt='movie pic' className='mov-i' />
                     <div className='desc'>
                         <div className='head'>{data.original_title}</div>
@@ -51,7 +52,7 @@ function Movie(props) {
                             })
                         }
                     </div>
-                </div> : <div className='mov'>loading...</div>}
+                </div> : <div className='loading'><img className='loader' src={lod}></img></div>}
         </>
     )
 }

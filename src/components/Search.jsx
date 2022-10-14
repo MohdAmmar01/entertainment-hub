@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import noimage from '../images/noimage.jpg'
 import { useNavigate } from 'react-router-dom'
+import lod from '../images/loader.gif'
+
 
 function Search() {
   const [data, setdata] = useState(null)
@@ -40,7 +42,7 @@ function Search() {
           <form className='search'>
             <div className='s-i'>
               <div >search</div>
-              <input type='text' className='inp' onChange={(e) => {
+              <input type='search' className='inp' onChange={(e) => {
                 setsearch(e.target.value)
               }} value={search} placeholder='search here for latest movies or  TV series' />
             </div>
@@ -54,14 +56,14 @@ function Search() {
             bb1 ? setbb1(false) : setbb1(true);
             setbb2(false)
 
-          }} style={{ 'border-bottom': bb1 ? '1px solid white' : null }}> MOVIES</div>
+          }} style={{ 'border-bottom': bb1 ? '3px solid #bd994b' : null }}> MOVIES</div>
           <div className="sbi" onClick={() => {
             if (type) { settype(false) }
 
             bb2 ? setbb2(false) : setbb2(true);
             setbb1(false)
 
-          }} style={{ 'border-bottom': bb2 ? '1px solid white' : null }}> TVSERIES</div>
+          }} style={{ 'border-bottom': bb2 ? '3px solid #bd994b' : null }}> TVSERIES</div>
         </div>
         <div className='trending' style={obj}>
           {
@@ -77,7 +79,7 @@ function Search() {
                 </div>
               )
 
-            }) : 'loading....'
+            }) : <div className='loading'><img className='loader' src={lod}></img></div>
           }
 
         </div>

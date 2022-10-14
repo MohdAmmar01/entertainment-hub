@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import noimage from '../images/noimage.jpg'
 import { useNavigate } from 'react-router-dom';
+import lod from '../images/loader.gif'
+
 
 function Trending() {
     const [data, setdata] = useState(null)
@@ -46,7 +48,7 @@ function Trending() {
                                 </div>
                             )
 
-                        }) : 'loading....'
+                        }) : <div className='loading'><img className='loader' src={lod}></img></div>
                     }
 
                 </div>

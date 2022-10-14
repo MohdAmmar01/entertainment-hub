@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import noimage from '../images/noimage.jpg'
 import { useNavigate } from 'react-router-dom'
+import lod from '../images/loader.gif'
 
 
 function Movies() {
@@ -32,11 +33,10 @@ function Movies() {
     return (
         <>
             <div className='home'>
-                <div className='tt'>EXPLORE MOVIES</div>
-
-                <div className='trending' style={obj}>
+                <div className='tt'>EXPLORE MOVIES</div>             
                     {
-                        data ? data.map((elem, i) => {
+                        data ?  <div className='trending' style={obj}> {
+                            data.map((elem, i) => {
                             return (
                                 <div className='movie' onClick={() => { navigate(`/detail/movie/${elem.id}`) }} >
                                     {elem.backdrop_path ? <img className='movie-i' alt='movie pic' src={`https://image.tmdb.org/t/p/w300/${elem.poster_path}`} /> : <img src={noimage} alt='movie pic' className='movie-i' />}
@@ -48,7 +48,8 @@ function Movies() {
                                 </div>
                             )
 
-                        }) : 'loading....'
+                        })
+                    }</div> : <div className='loading'><img className='loader' src={lod}></img></div>
                     }
 
                 </div>
@@ -59,8 +60,7 @@ function Movies() {
                     <div className="pag-i" onClick={() => { setpage(4) }}>4</div>
                     <div className="pag-i" onClick={() => { setpage(5) }}>5</div>
                 </div>
-            </div>
-        </>
+            </>
     )
 }
 
