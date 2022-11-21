@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:rgb(48, 141, 53);
+  background-color:rgb(60 79 94)
 }
 .left {
   height: 100%;
@@ -80,7 +80,7 @@
 
   }
   100%{
-    background-color: #bd994b;
+    background-color:rgb(60 79 94)
   }
 }
 .movie:hover {
@@ -162,14 +162,13 @@
 .s-i {
   height: 90%;
   width: 70%;
-  color: white;
+  color: rgb(60 79 94);
   /* margin: -15px 5px; */
   padding: 5px 10px;
   display: flex;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   flex-direction: column;
   /* align-items: center; */
-  background-color: #bd994b
 }
 .inp {
   border: none;
@@ -196,7 +195,7 @@
 
 /* footer */
 .footer {
-  background-color:rgb(48, 141, 53);
+  background-color:rgb(60 79 94);
   width: 100%;
   height: 10vh;
   position: sticky;
@@ -219,7 +218,7 @@
   cursor: pointer;
 }
 .i {
-  color: white;
+  color: rgb(255, 254, 254);
   font-size: 20px;
 }
 /* movie/ */

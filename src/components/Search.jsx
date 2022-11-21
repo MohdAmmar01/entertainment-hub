@@ -56,14 +56,14 @@ function Search() {
             bb1 ? setbb1(false) : setbb1(true);
             setbb2(false)
 
-          }} style={{ 'border-bottom': bb1 ? '3px solid #bd994b' : null }}> MOVIES</div>
+          }} style={{ 'border-bottom': bb1 ? '3px solid rgb(60 79 94)' : null }}> MOVIES</div>
           <div className="sbi" onClick={() => {
             if (type) { settype(false) }
 
             bb2 ? setbb2(false) : setbb2(true);
             setbb1(false)
 
-          }} style={{ 'border-bottom': bb2 ? '3px solid #bd994b' : null }}> TVSERIES</div>
+          }} style={{ 'border-bottom': bb2 ? '3px solid rgb(60 79 94)' : null }}> TVSERIES</div>
         </div>
         <div className='trending' style={obj}>
           {
