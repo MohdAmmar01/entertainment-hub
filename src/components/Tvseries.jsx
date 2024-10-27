@@ -20,8 +20,6 @@ function Tvseries() {
             const res = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}`)
             if (res.status === 200) {
                 setdata(res.data.results)
-                console.log(res.data)
-
             }
         } catch (e) {
 

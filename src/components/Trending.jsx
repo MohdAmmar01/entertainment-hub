@@ -21,7 +21,6 @@ function Trending() {
             const res = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`)
             if (res.status === 200) {
                 setdata(res.data.results)
-                console.log(res.data)
 
             }
         } catch (e) {

@@ -22,7 +22,6 @@ function Movie(props) {
     }
     const getsimilar = async () => {
         const res = await axios.get(`https://api.themoviedb.org/3/${tag}/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-        console.log(res.data)
         if (res.status === 200) { setsimilar(() => { return (res.data.results) }) }
     }
     const getvideo = async () => {
